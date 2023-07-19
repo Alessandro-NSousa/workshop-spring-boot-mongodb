@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.workshop.mongodb.domain.Post;
 import com.workshop.mongodb.domain.User;
+import com.workshop.mongodb.dto.AuthorDTO;
 import com.workshop.mongodb.repository.PostRepository;
 import com.workshop.mongodb.repository.UserRepository;
 
@@ -34,10 +35,12 @@ public class instantiation implements CommandLineRunner{
 		User alex = new User(null, "Alex Green", "alex@gmail.com");
 		User bob = new User(null, "Bob Grey", "bob@gmail.com");
 		
-		Post post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu viagem", "Vou viajar para São Paulo Abreços !", maria);
-		Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia", "Acordei feliz hoje !", maria);
-		
 		userRepositor.saveAll(Arrays.asList(maria, alex, bob));
+		
+		Post post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu viagem", "Vou viajar para São Paulo Abreços !", new AuthorDTO(maria));
+		Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia", "Acordei feliz hoje !", new AuthorDTO(maria));
+		
+		
 		postRepositor.saveAll(Arrays.asList(post1,post2));
 	}
 
